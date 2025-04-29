@@ -65,7 +65,7 @@ points:
         top:
           row_net: P19
 outlines:
-  outline:
+  raw:
     - what: polygon
       operation: stack
       points:
@@ -107,6 +107,14 @@ outlines:
       bound: false
       size: [14, 14]
   plate:
-    - name: outline
+    - name: raw
     - operation: subtract
       name: keys
+pcbs:
+  board:
+    template: kicad8
+    outlines:
+      main:
+        outline: raw
+    footprints:
+
