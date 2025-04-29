@@ -1,0 +1,112 @@
+meta:
+  engine: 4.1.0
+units:
+  kx: 19
+  ky: 19
+  px: kx+0.5
+  py: ky+0.5
+  drill_radius: 0.8
+points:
+  zones:
+    matrix:
+      anchor:
+        shift: [175, -175]
+      key:
+        padding: 1ky
+        spread: 1kx
+      columns:
+        leftpinky:
+          rows.thumb.skip: true
+          key:
+            column_net: P2
+        leftring:
+          rows.thumb.skip: true
+          key:
+            column_net: P3
+        leftmiddle:
+          rows.thumb.skip: true
+          key:
+            column_net: P4
+        leftindex:
+          key:
+            column_net: P5
+        leftinner:
+          key:
+            column_net: P6
+        mcu:
+          key:
+            skip: true
+            spread: 1.2kx
+        rightinner:
+          key:
+            column_net: P7
+        rightindex:
+          key:
+            column_net: P8
+        rightmiddle:
+          key:
+            column_net: P9
+          rows.thumb.skip: true
+        rightring:
+          key:
+            column_net: P10
+          rows.thumb.skip: true
+        rightpinky:
+          key:
+            column_net: P16
+          rows.thumb.skip: true
+      rows:
+        thumb:
+          row_net: P14
+        bottom:
+          row_net: P15
+        home:
+          row_net: P18
+        top:
+          row_net: P19
+outlines:
+  outline:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_leftpinky_top
+          shift: [-0.5px, 0.5py]
+        - ref: matrix_leftinner_top
+          shift: [0.5px, 0.5py]
+        - ref: matrix_leftinner_top
+          shift: [0.5px, 0py]
+        - ref: matrix_rightinner_top
+          shift: [-0.5px, 0py]
+        - ref: matrix_rightinner_top
+          shift: [-0.5px, 0.5py]
+        - ref: matrix_rightpinky_top
+          shift: [0.5px, 0.5py]
+        - ref: matrix_rightpinky_bottom
+          shift: [0.5px, -0.5py]
+        - ref: matrix_rightindex_bottom
+          shift: [0.5px, -0.5py]
+        - ref: matrix_rightindex_thumb
+          shift: [0.5px, -0.5py]
+        - ref: matrix_rightinner_thumb
+          shift: [-0.5px, -0.5py]
+        - ref: matrix_rightinner_thumb
+          shift: [-0.5px, 0py]
+        - ref: matrix_leftinner_thumb
+          shift: [0.5px, 0py]
+        - ref: matrix_leftinner_thumb
+          shift: [0.5px, -0.5py]
+        - ref: matrix_leftindex_thumb
+          shift: [-0.5px, -0.5py]
+        - ref: matrix_leftindex_bottom
+          shift: [-0.5px, -0.5py]
+        - ref: matrix_leftpinky_bottom
+          shift: [-0.5px, -0.5py]
+  keys:
+    - what: rectangle
+      where: true
+      bound: false
+      size: [kx, ky]
+  indicator:
+    - name: outline
+    - operation: subtract
+      name: keys
