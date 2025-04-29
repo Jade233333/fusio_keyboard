@@ -10,7 +10,7 @@ points:
   zones:
     matrix:
       anchor:
-        shift: [175, -175]
+        shift: [100, -175]
       key:
         padding: 1ky
         spread: 1kx
@@ -36,7 +36,7 @@ points:
         mcu:
           key:
             skip: true
-            spread: 1.2kx
+            spread: 25
         rightinner:
           key:
             column_net: P7
@@ -106,15 +106,79 @@ outlines:
       where: true
       bound: false
       size: [14, 14]
-  plate:
+  pcb_cutout:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_leftinner_bottom
+          shift: [0.5px, 0.4py]
+        - ref: matrix_rightinner_bottom
+          shift: [-0.5px, 0.4py]
+        - ref: matrix_rightinner_bottom
+          shift: [-0.5px, -10py]
+        - ref: matrix_leftinner_bottom
+          shift: [0.5px, -10py]
+  pcb:
     - name: raw
     - operation: subtract
       name: keys
+    - operation: subtract
+      name: pcb_cutout
 pcbs:
   board:
     template: kicad8
     outlines:
       main:
-        outline: raw
+        outline: pcb
     footprints:
-
+      keyswitches:
+        where: true
+        what: ceoloide/switch_choc_v1_v2
+        params:
+          include_keycap: true
+          solder: false
+          include_stabilizer_pad: false
+          choc_v1_support: false
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: ceoloide/diode_tht_sod123
+        where: true
+        params:
+          include_traces_vias: true
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -0.28ky]
+      mcu:
+        what: ceoloide/mcu_supermini_nrf52840
+        params:
+          side: F
+          show_silk_labels: false
+        where:
+          ref: matrix_leftinner_top
+          shift: [0.5kx+12.5,-0.5ky-3.5]
+      reset:
+        what: ceoloide/reset_switch_smd_side
+        params:
+          side: B
+          include_bosses: true
+        where:
+          ref: matrix_leftinner_top
+          shift: [0.5kx+18.75,2.1]
+      power:
+        what: ceoloide/power_switch_smd_side
+        params:
+          side: B
+        where:
+          ref: matrix_leftinner_top
+          shift: [0.5kx+5.75,2.25]
+          rotate: 90
+      battery:
+        what: ceoloide/battery_connector_molex_pico_ezmate_1x02
+        params:
+          side: B
+        where:
+          ref: matrix_leftinner_home
+          shift: [0.5kx+12.5,0]
+ 
