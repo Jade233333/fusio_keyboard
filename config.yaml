@@ -74,9 +74,9 @@ outlines:
         - ref: matrix_leftinner_top
           shift: [0.5px, 0.5py]
         - ref: matrix_leftinner_top
-          shift: [0.5px, 0py]
+          shift: [0.5px, 0.2py]
         - ref: matrix_rightinner_top
-          shift: [-0.5px, 0py]
+          shift: [-0.5px, 0.2py]
         - ref: matrix_rightinner_top
           shift: [-0.5px, 0.5py]
         - ref: matrix_rightpinky_top
@@ -90,9 +90,9 @@ outlines:
         - ref: matrix_rightinner_thumb
           shift: [-0.5px, -0.5py]
         - ref: matrix_rightinner_thumb
-          shift: [-0.5px, 0py]
+          shift: [-0.5px, -0.2py]
         - ref: matrix_leftinner_thumb
-          shift: [0.5px, 0py]
+          shift: [0.5px, -0.2py]
         - ref: matrix_leftinner_thumb
           shift: [0.5px, -0.5py]
         - ref: matrix_leftindex_thumb
@@ -105,8 +105,8 @@ outlines:
     - what: rectangle
       where: true
       bound: false
-      size: [kx, ky]
-  indicator:
+      size: [14, 14]
+  plate:
     - name: outline
     - operation: subtract
       name: keys
