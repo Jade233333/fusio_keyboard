@@ -111,19 +111,35 @@ outlines:
       operation: stack
       points:
         - ref: matrix_leftinner_bottom
-          shift: [0.5px, 0.4py]
+          shift: [0.5px, 0.3py]
         - ref: matrix_rightinner_bottom
-          shift: [-0.5px, 0.4py]
+          shift: [-0.5px, 0.3py]
         - ref: matrix_rightinner_bottom
           shift: [-0.5px, -10py]
         - ref: matrix_leftinner_bottom
           shift: [0.5px, -10py]
+  plate_cutout:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_leftinner_bottom
+          shift: [0.5px, 0.3py]
+        - ref: matrix_rightinner_bottom
+          shift: [-0.5px, 0.3py]
+        - ref: matrix_rightinner_bottom
+          shift: [-0.5px, 10py]
+        - ref: matrix_leftinner_bottom
+          shift: [0.5px, 10py]
   pcb:
+    - name: raw
+    - operation: subtract
+      name: pcb_cutout
+  plate:
     - name: raw
     - operation: subtract
       name: keys
     - operation: subtract
-      name: pcb_cutout
+      name: plate_cutout
 pcbs:
   board:
     template: kicad8
