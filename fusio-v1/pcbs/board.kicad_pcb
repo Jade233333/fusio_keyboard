@@ -17017,6 +17017,19 @@
 		(layer "Edge.Cuts")
 		(uuid "fa7a4a13-364a-4d28-86b3-31eb6825ecc0")
 	)
+	(gr_text "JLCJLCJLCJLC"
+		(at 232.41 183.82 0)
+		(layer "B.SilkS")
+		(uuid "ad1b635e-5747-4d79-8c09-dcee01d16684")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
+			)
+			(justify left bottom mirror)
+		)
+	)
 	(segment
 		(start 187.88 122.62)
 		(end 185.1 125.4)
