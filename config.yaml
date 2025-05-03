@@ -6,6 +6,8 @@ units:
   px: kx+0.5
   py: ky+0.5
   drill_radius: 0.8
+  mcu_spacing: 20 
+  central_offset: mcu_spacing/2
 points:
   zones:
     matrix:
@@ -36,7 +38,7 @@ points:
         mcu:
           key:
             skip: true
-            spread: 25
+            spread: mcu_spacing 
         rightinner:
           key:
             column_net: P7
@@ -71,14 +73,6 @@ outlines:
       points:
         - ref: matrix_leftpinky_top
           shift: [-0.5px, 0.5py]
-        - ref: matrix_leftinner_top
-          shift: [0.5px, 0.5py]
-        - ref: matrix_leftinner_top
-          shift: [0.5px, 0.2py]
-        - ref: matrix_rightinner_top
-          shift: [-0.5px, 0.2py]
-        - ref: matrix_rightinner_top
-          shift: [-0.5px, 0.5py]
         - ref: matrix_rightpinky_top
           shift: [0.5px, 0.5py]
         - ref: matrix_rightpinky_bottom
@@ -86,14 +80,6 @@ outlines:
         - ref: matrix_rightindex_bottom
           shift: [0.5px, -0.5py]
         - ref: matrix_rightindex_thumb
-          shift: [0.5px, -0.5py]
-        - ref: matrix_rightinner_thumb
-          shift: [-0.5px, -0.5py]
-        - ref: matrix_rightinner_thumb
-          shift: [-0.5px, -0.2py]
-        - ref: matrix_leftinner_thumb
-          shift: [0.5px, -0.2py]
-        - ref: matrix_leftinner_thumb
           shift: [0.5px, -0.5py]
         - ref: matrix_leftindex_thumb
           shift: [-0.5px, -0.5py]
@@ -111,9 +97,9 @@ outlines:
       operation: stack
       points:
         - ref: matrix_leftinner_bottom
-          shift: [0.5px, 0.3py]
+          shift: [0.5px, 0.65py]
         - ref: matrix_rightinner_bottom
-          shift: [-0.5px, 0.3py]
+          shift: [-0.5px, 0.65py]
         - ref: matrix_rightinner_bottom
           shift: [-0.5px, -10py]
         - ref: matrix_leftinner_bottom
@@ -123,9 +109,9 @@ outlines:
       operation: stack
       points:
         - ref: matrix_leftinner_bottom
-          shift: [0.5px, 0.3py]
+          shift: [0.5px, 0.65py]
         - ref: matrix_rightinner_bottom
-          shift: [-0.5px, 0.3py]
+          shift: [-0.5px, 0.65py]
         - ref: matrix_rightinner_bottom
           shift: [-0.5px, 10py]
         - ref: matrix_leftinner_bottom
@@ -134,12 +120,13 @@ outlines:
     - name: raw
     - operation: subtract
       name: pcb_cutout
+      fillet: 0.8
   plate:
     - name: raw
     - operation: subtract
-      name: keys
-    - operation: subtract
       name: plate_cutout
+    - operation: subtract
+      name: keys
 pcbs:
   board:
     template: kicad8
@@ -173,7 +160,7 @@ pcbs:
           show_silk_labels: false
         where:
           ref: matrix_leftinner_top
-          shift: [0.5kx+12.5,-0.5ky-3.5]
+          shift: [0.5kx+central_offset,-0.5ky+2.7]
       reset:
         what: ceoloide/reset_switch_smd_side
         params:
@@ -181,14 +168,14 @@ pcbs:
           include_bosses: true
         where:
           ref: matrix_leftinner_top
-          shift: [0.5kx+18.75,2.1]
+          shift: [0.5kx+central_offset+6.38,8]
       power:
         what: ceoloide/power_switch_smd_side
         params:
           side: B
         where:
           ref: matrix_leftinner_top
-          shift: [0.5kx+5.75,2.25]
+          shift: [0.5kx+central_offset-6.76,8.25]
           rotate: 90
       battery:
         what: ceoloide/battery_connector_molex_pico_ezmate_1x02
@@ -196,5 +183,5 @@ pcbs:
           side: B
         where:
           ref: matrix_leftinner_home
-          shift: [0.5kx+12.5,0]
+          shift: [0.5kx+central_offset,8]
  
